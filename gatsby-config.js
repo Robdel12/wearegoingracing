@@ -1,9 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Documentation Starter',
-    description: 'This is a starter for gatsby-theme-documentation'
+    title: 'We Are Going Racing',
+    description: 'An iRacing league'
   },
-  plugins: [
-    'gatsby-theme-documentation'
-  ]
-}
+  plugins: ['gatsby-theme-documentation']
+};
