@@ -3,5 +3,13 @@ module.exports = {
     title: 'We Are Going Racing',
     description: 'An iRacing league'
   },
-  plugins: ['gatsby-theme-documentation']
+  plugins: [
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: 'UA-155010640-1'
+      }
+    },
+    'gatsby-theme-documentation'
+  ]
 };
