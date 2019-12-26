@@ -11,11 +11,14 @@
   "dependencies": {
     "gatsby": "^2.15.24",
     "gatsby-plugin-google-analytics": "^2.1.31",
+    "gatsby-source-filesystem": "^2.1.43",
     "gatsby-theme-documentation": "^0.0.27",
+    "gatsby-transformer-json": "^2.2.22",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
   },
   "devDependencies": {
+    "html-table-to-json": "^0.4.1",
     "puppeteer": "^2.0.0"
   }
 }
