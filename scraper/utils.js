@@ -1,9 +1,28 @@
 const HtmlTableToJson = require('html-table-to-json');
 const { writeFileSync } = require('fs');
 
+const EMAIL = process.env.EMAIL;
+const PASSWORD = process.env.PASSWORD;
+
+async function goToLeague(page, id = '3825') {
+  console.log('Going to leauge', id);
+  await page.goto(`https://members.iracing.com/membersite/member/LeagueView.do?league=${id}`);
+}
+
+async function login(page) {
+  if (!EMAIL || !PASSWORD) {
+    throw new Error('You must pass login information. Disabling');
+  }
+
+  await goToLeague();
+  await page.waitFor('.username');
+  await page.type('.username', EMAIL, { delay: 5 });
+  await page.type('.password', P9ASSWORD, { delay: 5 });
+  await page.click('.log-in');
+}
+
 // finds a season and gathers all of the session results links, then calls `gatherRaceResults`
 // which will then return JSON of the sessions results
-
 async function gatherRaceResults(page, raceResultLink) {
   let browser = await page.browserContext();
   let resultTab = await browser.newPage();
@@ -122,6 +141,8 @@ function gatherTracks() {
 }
 
 module.exports = {
+  login,
+  goToLeague,
   gatherTracks,
   getSesasonResults,
   gatherSessionResults

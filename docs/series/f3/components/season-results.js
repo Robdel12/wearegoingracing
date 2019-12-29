@@ -1,6 +1,4 @@
 import React from 'react';
-import dayjs from 'dayjs';
-import customParseFormat from 'dayjs/plugin/customParseFormat';
 import {
   Accordion,
   AccordionItem,
@@ -10,10 +8,11 @@ import {
 } from 'react-accessible-accordion';
 import 'react-accessible-accordion/dist/fancy-example.css';
 
-// TODO: use dynamic imports in the component for data
-import results from '../../../src/data/seasons/results/fridayfun.json';
+import dayjs from 'dayjs';
+import advancedFormat from 'dayjs/plugin/advancedFormat';
+import results from '../../../../src/data/seasons/results/fridayfun.json';
 
-dayjs.extend(customParseFormat);
+dayjs.extend(advancedFormat);
 
 function SessionResults({ session, type }) {
   if (!session) return null;
@@ -35,9 +34,9 @@ function SessionResults({ session, type }) {
   );
 }
 
-export default function Results() {
+export default function Results({ season }) {
   return (
-    <Accordion allowMultipleExpanded>
+    <Accordion allowMultipleExpanded allowZeroExpanded>
       {results.map(session => {
         return (
           <AccordionItem>
@@ -45,7 +44,8 @@ export default function Results() {
               <AccordionItemButton>{session.track}</AccordionItemButton>
             </AccordionItemHeading>
             <AccordionItemPanel>
-              <p>Race time: {session.resultTime}</p>
+              <p>Race time: {dayjs(session.resultTime.split('-').join('/')).format('MMMM Do, h:mm a (YYYY)')}</p>
+
               <SessionResults session={session.practice} type="Practice" />
               <SessionResults session={session.qualifying} type="Qualifying" />
               <SessionResults session={session.race} type="Race" />
