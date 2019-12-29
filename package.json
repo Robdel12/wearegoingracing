@@ -18,7 +18,9 @@
     "react-dom": "^16.9.0"
   },
   "devDependencies": {
+    "dayjs": "^1.8.18",
     "html-table-to-json": "^0.4.1",
-    "puppeteer": "^2.0.0"
+    "puppeteer": "^2.0.0",
+    "react-accessible-accordion": "^3.0.1"
   }
 }
